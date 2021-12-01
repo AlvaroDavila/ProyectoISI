@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:amqp="http://www.mulesoft.org/schema/mule/amqp" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:quartz="http://www.mulesoft.org/schema/mule/quartz" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/quartz http://www.mulesoft.org/schema/mule/quartz/current/mule-quartz.xsd
+http://www.mulesoft.org/schema/mule/amqp http://www.mulesoft.org/schema/mule/amqp/current/mule-amqp.xsd">
+	<http:request-config name="HTTP_Request_Configuration" host="api.thingspeak.com" port="80" doc:name="HTTP Request Configuration"/>
+	<http:request-config name="HTTP_Request_Configuration1" host="api.thinspeak.com" port="80" doc:name="HTTP Request Configuration"/>
+	<http:request-config name="HTTP_Request_Configuration2" host="api.thingspeak.com" port="80" doc:name="HTTP Request Configuration"/>
+	<http:request-config name="HTTP_Request_Configuration3" doc:name="HTTP Request Configuration"/>
+	<amqp:connector name="AMQP_0_9_Connector" validateConnections="true"  username="admin" password="admin" doc:name="AMQP-0-9 Connector"/>
+	<flow name="home-automation-exampleFlow">
+		<amqp:inbound-endpoint queueName="hello" responseTimeout="10000" exchange-pattern="request-response" connector-ref="AMQP_0_9_Connector" doc:name="AMQP-0-9"/>
+		<byte-array-to-string-transformer doc:name="Byte Array to String"/>
+		<logger message="#[payload]" level="INFO" doc:name="Logger"/>
+	</flow>
+</mule>

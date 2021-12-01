@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-project xmlns="http://www.mulesoft.com/tooling/project" runtimeId="org.mule.tooling.server.3.9.0" schemaVersion="5.3.0.0">
+    <name>home-automation-example</name>
+    <description></description>
+    <muleExtension name="AMQP-0-9" qualifier="mule-transport-amqp-contribution"/>
+    <muleExtension name="AMQPS-0-9" qualifier="mule-transport-amqp-contribution"/>
+</mule-project>
